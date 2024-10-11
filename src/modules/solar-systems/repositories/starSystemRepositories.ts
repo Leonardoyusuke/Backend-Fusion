@@ -1,6 +1,5 @@
 import { prisma } from "@/database/database";
 import { StarSystemCreate } from "@/helpers/interfaces/StarSystemCreate";
-import { StarSystem } from "@prisma/client";
 
 async function createStarSystem(name: string, description: string): Promise<StarSystemCreate> {
     const create = await prisma.starSystem.create({
@@ -11,9 +10,19 @@ async function createStarSystem(name: string, description: string): Promise<Star
     });
     return create;
 }
+async function findByName(name: string) {
+    const find = await prisma.starSystem.findFirst({
+        where:{
+            name
+        }
+    });
+    return find;
+    
+}
 
 const starSystemRepository = {
-    createStarSystem
+    createStarSystem,
+    findByName
 };
 
 export default starSystemRepository

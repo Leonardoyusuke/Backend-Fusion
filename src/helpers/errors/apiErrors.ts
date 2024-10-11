@@ -12,3 +12,9 @@ export class BadRequest extends ApiError {
         super(message, 400);
     }
 }
+
+export class Conflict extends ApiError {
+    constructor(message: string){
+        super(message, 409)
+    }
+}
