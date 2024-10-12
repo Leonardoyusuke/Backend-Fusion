@@ -12,8 +12,7 @@ export function validateSchema(schema: Joi.ObjectSchema<JoiSchema>) {
       const { error } = schema.validate(req.body, { abortEarly: false });
       if (error) {
         const errors = error.details.map((detail: any) => detail.message);
-        console.log(errors);
-        throw new Conflict(errors.join(", "));
+        throw new BadRequest(errors.join(", "));
       }
 
       next();
