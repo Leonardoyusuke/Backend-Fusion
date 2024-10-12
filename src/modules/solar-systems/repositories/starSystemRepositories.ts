@@ -1,7 +1,6 @@
 import { prisma } from "@/database/database";
-import { StarSystemCreate } from "@/helpers/interfaces/StarSystemCreate";
 
-async function createStarSystem(name: string, description: string): Promise<StarSystemCreate> {
+async function createStarSystem(name: string, description: string){
     const create = await prisma.starSystem.create({
         data: {
             name,
@@ -12,20 +11,20 @@ async function createStarSystem(name: string, description: string): Promise<Star
 }
 async function findByName(name: string) {
     const find = await prisma.starSystem.findFirst({
-        where:{
+        where: {
             name
         }
     });
     return find;
 }
 
-async function findById(id:number) {
+async function findById(id: number) {
     const find = await prisma.starSystem.findFirst({
-        where:{
+        where: {
             id
         },
-        include:{
-            planets:true
+        include: {
+            planets: true
         }
     });
     return find;
@@ -35,12 +34,26 @@ async function getStarSystems() {
     return await prisma.starSystem.findMany()
 }
 
+async function updateStarSystems(id: number, name:string, description:string ) {
+    const update = await prisma.starSystem.update({
+        where: {
+            id: id,
+        },
+        data: {
+            ...(name && { name }),
+            ...(description && { description }),
+        }
+    })
+    return update
+}
+
 
 const starSystemRepository = {
     createStarSystem,
     findByName,
     findById,
-    getStarSystems
+    getStarSystems,
+    updateStarSystems
 };
 
 export default starSystemRepository
