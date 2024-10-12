@@ -31,7 +31,7 @@ model Planet {
   name      String
   climate   String
   terrain   String
-  population BigInt
+  population Int
   starSystemId Int
   starSystem   StarSystem @relation(fields: [starSystemId], references: [id])
   characters   Character[]

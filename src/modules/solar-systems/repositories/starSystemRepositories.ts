@@ -17,12 +17,29 @@ async function findByName(name: string) {
         }
     });
     return find;
-    
+}
+
+async function findById(id:number) {
+    const find = await prisma.starSystem.findFirst({
+        where:{
+            id
+        },
+        include:{
+            planets:true
+        }
+    });
+    return find;
+}
+
+async function getStarSystems() {
+    const get = await prisma.starSystem.findMany()
 }
 
 const starSystemRepository = {
     createStarSystem,
-    findByName
+    findByName,
+    findById,
+    getStarSystems
 };
 
 export default starSystemRepository
