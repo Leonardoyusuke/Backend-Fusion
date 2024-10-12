@@ -32,8 +32,9 @@ async function findById(id:number) {
 }
 
 async function getStarSystems() {
-    const get = await prisma.starSystem.findMany()
+    return await prisma.starSystem.findMany()
 }
+
 
 const starSystemRepository = {
     createStarSystem,
