@@ -22,9 +22,14 @@ async function findById(id:number) {
     return find
 }
 
+async function findAllCharacters() {
+    return await prisma.character.findMany()
+}
+
 
 const characterRepository = {
     createCharacter,
+    findAllCharacters,
     findById
 }
 export default characterRepository

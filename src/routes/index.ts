@@ -5,7 +5,7 @@ import characterRouter from "./character/characterRouters";
 const router = Router()
 
 router.use('/star-systems',starSystemRouters)
-router.use('/character',characterRouter)
+router.use('/characters',characterRouter)
 
 
 export default router
