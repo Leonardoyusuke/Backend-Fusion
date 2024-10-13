@@ -9,7 +9,6 @@ export default async function createCharacterController(req:Request, res:Respons
         const create = await createCharacterService(name, speciesId, affiliationId, homePlanetId)
         if(create) return res.status(201).json(create)
     } catch (error) {
-        console.log(error)
         if (error instanceof BadRequest) {
             return res.status(error.statusCode).send(error.message);
         }
